@@ -1,5 +1,7 @@
 package br.unesp.rc.exercicio2.modelo;
 
+import java.util.Objects;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -15,6 +17,8 @@ public class Produto {
     private String nome;
     private double preco;
     private double desconto;
+
+    
 
     public Produto(long codigo, String nome, double preco, double desconto) {
         this.codigo = codigo;
@@ -53,5 +57,25 @@ public class Produto {
 
     public void setDesconto(double desconto) {
         this.desconto = desconto;
+    } 
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", preco=" + preco + ", desconto=" + desconto + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.preco) ^ (Double.doubleToLongBits(this.preco) >>> 32));
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.desconto) ^ (Double.doubleToLongBits(this.desconto) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); 
     }
 }
